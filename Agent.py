@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 # Webhook URL
-WEBHOOK_URL = "hhttps://rahulpihub1.app.n8n.cloud/webhook/9e23b923-5a62-40e8-9cfb-066b028543cb"
+WEBHOOK_URL = "https://rahulpihub1.app.n8n.cloud/webhook/9e23b923-5a62-40e8-9cfb-066b028543cb"
 
 # Streamlit page settings
 st.set_page_config(page_title="Invoice Submission", page_icon="🧾", layout="centered")
