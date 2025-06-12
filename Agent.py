@@ -1,0 +1,35 @@
+import streamlit as st
+import requests
+
+# Webhook URL
+WEBHOOK_URL = "https://rahulpihub1.app.n8n.cloud/webhook-test/4f259175-058b-44e2-a2aa-cf76039b2a9b"
+
+# Streamlit page settings
+st.set_page_config(page_title="Invoice Submission", page_icon="🧾", layout="centered")
+st.title("🧾 Invoice Submission Form")
+
+# Input fields
+name = st.text_input("Name")
+email = st.text_input("Email ID")
+invoice_number = st.text_input("Invoice Number")
+
+# Submit button
+if st.button("Submit"):
+    if not name or not email or not invoice_number:
+        st.warning("Please fill in all fields before submitting.")
+    else:
+        payload = {
+            "name": name,
+            "email": email,
+            "invoice_number": invoice_number
+        }
+
+        try:
+            response = requests.post(WEBHOOK_URL, json=payload, timeout=10)
+            response.raise_for_status()
+            st.success("✅ Data submitted successfully!")
+            st.code(payload, language="json")
+        except requests.exceptions.RequestException as e:
+            st.error(f"⚠️ Failed to send data: {e}")
+
+st.caption("Powered by Streamlit • © 2025")
